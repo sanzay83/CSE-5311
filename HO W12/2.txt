@@ -1,0 +1,19 @@
+a. Use the aggregate method
+
+In this method, initially we need to compute the total cost of n insertions and divide by n to get amortized cost.
+
+Assuming an array of size 1, whenever the array is filled, it will double the size of the array. Now each resize will copy all current elements which results the total cost of copying to be 
+1 + 2 + 4 + 8 + .... + 2^k ~ 2n - 1
+
+Now, each insertions costs at least 1 unit which makes total cost to be O(n) + O(n) = O(n) for copying and insertions.
+
+Amortized cost per insertion = Total cost / n = O(1)
+
+
+b. Use the Accounting method
+
+In this method, we assign an amortized cost to each operation and ensure that the total amortized cost covers the total cost.
+
+Assuming an amortized cost of 3 for each insertion, where 1 will be used to pay for insertion and remaining 2 is stored as credit to pay for future table doublings. so we always have enough credits to pay for resizing. 
+
+Therefore the amortized runtime for inserting n elements using the acounting method is O(n) or O(1) per insertion.
